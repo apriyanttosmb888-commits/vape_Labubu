@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Labubu Vape Store</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -38,9 +38,14 @@ padding:30px;
 }
 
 .header h1{
-font-size:42px;
+font-family:'Baloo 2',cursive;
+font-size:58px;
+font-weight:800;
 color:#ffb6d9;
-text-shadow:0 0 15px #ff69b4;
+text-shadow:
+0 0 10px #ff69b4,
+0 0 20px #ff69b4,
+0 0 40px #ff69b4;
 }
 
 .header p{
@@ -117,9 +122,19 @@ box-shadow:0 0 15px rgba(0,0,0,.3);
 }
 
 .labubu{
-font-size:70px;
+font-size:85px;
+animation:float 3s ease-in-out infinite;
 }
 
+@keyframes float{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-10px);
+}
+}
+  
 .footer{
 text-align:center;
 padding:30px;
@@ -132,7 +147,7 @@ color:#fff;
 <div class="overlay">
 
 <div class="header">
-<div class="labubu">🩷🐰</div>
+<div class="labubu">🐰🩷🐰</div>
 <h1>LABUBU VAPE STORE</h1>
 <p>Liquid & Pod Collection</p>
 </div>
