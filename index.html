@@ -90,12 +90,31 @@ gap:15px;
 }
 
 .card{
-background:rgba(255,255,255,.15);
+position:relative;
+background:
+linear-gradient(
+rgba(255,105,180,.25),
+rgba(255,182,193,.15)
+),
+url('https://i.imgur.com/qP9GQmD.png');
+
+background-size:120px;
+background-repeat:no-repeat;
+background-position:right bottom;
+
 backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,.2);
-padding:15px;
-border-radius:20px;
+border:2px solid rgba(255,182,193,.4);
+padding:18px;
+border-radius:25px;
 transition:.3s;
+overflow:hidden;
+}
+
+.card:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:
+0 0 20px #ff69b4,
+0 0 40px #ff69b4;
 }
 
 .card:hover{
@@ -104,10 +123,24 @@ box-shadow:0 0 20px #ff8fcf;
 }
 
 .card h3{
-font-size:15px;
+font-family:'Baloo 2',cursive;
+font-size:18px;
+font-weight:700;
 line-height:1.5;
-}
 
+color:#ffd6f0;
+
+text-shadow:
+0 0 5px #ff69b4,
+0 0 10px #ff69b4,
+0 0 20px #ff1493;
+}
+.labubu-item{
+font-size:30px;
+margin-bottom:10px;
+filter:drop-shadow(0 0 10px #ff69b4);
+}
+  
 .whatsapp{
 position:fixed;
 right:20px;
@@ -259,8 +292,9 @@ liquids.filter(x=>x.toLowerCase().includes(keyword))
 total++;
 liquidContainer.innerHTML += `
 <div class="card">
+<div class="labubu-item">🐰🩷</div>
 <h3>${item}</h3>
-</div>`;
+</div>
 });
 
 pods.filter(x=>x.toLowerCase().includes(keyword))
@@ -268,8 +302,9 @@ pods.filter(x=>x.toLowerCase().includes(keyword))
 total++;
 podContainer.innerHTML += `
 <div class="card">
+<div class="labubu-item">🐰🩷</div>
 <h3>${item}</h3>
-</div>`;
+</div>
 });
 
 document.getElementById('total').innerText = total;
