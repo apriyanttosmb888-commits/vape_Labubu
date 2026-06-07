@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labubu Vape Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:
+linear-gradient(rgba(255,192,203,.15),rgba(255,182,193,.15)),
+url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1920');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:#fff;
+min-height:100vh;
+}
+
+.overlay{
+background:rgba(0,0,0,.45);
+min-height:100vh;
+padding:20px;
+}
+
+.header{
+text-align:center;
+padding:30px;
+}
+
+.header h1{
+font-size:42px;
+color:#ffb6d9;
+text-shadow:0 0 15px #ff69b4;
+}
+
+.header p{
+margin-top:10px;
+color:#fff;
+}
+
+.search-box{
+max-width:700px;
+margin:auto;
+margin-bottom:20px;
+}
+
+.search-box input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+font-size:16px;
+outline:none;
+background:rgba(255,255,255,.9);
+}
+
+.counter{
+text-align:center;
+margin-bottom:20px;
+font-size:18px;
+font-weight:600;
+}
+
+.section-title{
+font-size:28px;
+margin:25px 0;
+text-align:center;
+color:#ffd3ea;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+gap:15px;
+}
+
+.card{
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,.2);
+padding:15px;
+border-radius:20px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 0 20px #ff8fcf;
+}
+
+.card h3{
+font-size:15px;
+line-height:1.5;
+}
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#25D366;
+padding:15px 20px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+color:white;
+box-shadow:0 0 15px rgba(0,0,0,.3);
+}
+
+.labubu{
+font-size:70px;
+}
+
+.footer{
+text-align:center;
+padding:30px;
+color:#fff;
+}
+</style>
+</head>
+<body>
+
+<div class="overlay">
+
+<div class="header">
+<div class="labubu">🩷🐰</div>
+<h1>LABUBU VAPE STORE</h1>
+<p>Liquid & Pod Collection</p>
+</div>
+
+<div class="search-box">
+<input type="text" id="search" placeholder="Cari Liquid / Pod...">
+</div>
+
+<div class="counter">
+Total Produk : <span id="total"></span>
+</div>
+
+<h2 class="section-title">💧 LIQUID</h2>
+<div class="grid" id="liquidList"></div>
+
+<h2 class="section-title">🔥 POD DEVICE</h2>
+<div class="grid" id="podList"></div>
+
+<div class="footer">
+© 2026 Labubu Vape Store
+</div>
+
+</div>
+
+<a class="whatsapp" href="https://wa.me/6281234567890" target="_blank">
+Chat WA
+</a>
+
+<script>
+
+const liquids = [
+"A LA CARTE CREAM BISCUIT SALT 30MG 30ML",
+"A LA CARTE CREAM POUNDCAKE SALT 30MG 30ML",
+"A LA CARTE CREAM BANANA SALT 30MG 30ML",
+"AMERICAN FRUITY GRAPE SMOOTHIES PODS FRIENDLY 12MG 30ML",
+"AMERICAN WINTER APPLE SALT 24MG 30ML",
+"AMERICAN WINTER GRAPE SALT 24MG 30ML",
+"AMERICAN WINTER LYCHEE SALT 24MG 30ML",
+"AMERICAN WINTER BERRY SALT 24MG 30ML",
+"BANANALICIOUS BANANA CREAM STRAWBERRY SALT 35MG 30ML",
+"BEQU MANGO FREEZE SALT 30MG 30ML",
+"BEQU BLACKCURRANT SALT 30MG 30ML",
+"BEQU WATERMELON SALT 30MG 30ML",
+"BEQU HONEYDEW SALT 30MG 30ML",
+"BEQU LYCHEE SALT 30MG 30ML",
+"BEQU STRAWBERRY SALT 30MG 30ML",
+"BEQU PINEAPPLE SALT 30MG 30ML",
+"BUAQITA GRAPE SALT 30MG 30ML",
+"BUAQITA WATERMELON SALT 30MG 30ML",
+"BUAQITA APPLE SALT 30MG 30ML",
+"FOOM FRUITY SERIES ICY MANGO SALT 30MG 30ML",
+"FOOM FRUITY SERIES ICY LYCHEE SALT 30MG 30ML",
+"FOOM FRUITY SERIES ICY GRAPE SALT 30MG 30ML",
+"FOOM FRUITY SERIES ICY STRAWBERRY SALT 30MG 30ML",
+"FOOM MAX ICY WATERMELON SALT 30MG 30ML",
+"FOOM MAX ICY BERRY SALT 30MG 30ML",
+"FOOM BEVERAGE SERIES ICED TEA SALT 30MG 30ML",
+"FOOM CIGARETTE SERIES JAVA KRETEK SALT 30MG 30ML",
+"FOOM BEVERAGE SERIES MATCHA LATTE SALT 30MG 30ML",
+"ICELANDS WATERMELON SALT 30MG 30ML",
+"ICELANDS BLACKCURRANT SALT 30MG 30ML",
+"ICELANDS STRAWBERRY SALT 30MG 30ML",
+"LOKAAL MANGO BUBBLEGUM SALT 30MG 30ML",
+"LOKAAL STRAWBERRY BUBBLEGUM SALT 30MG 30ML",
+"NAFAS LECI SALT 12MG 30ML",
+"NAFAS ANGGUR SALT 12MG 30ML",
+"NAFAS STROBERI SALT 12MG 30ML",
+"UNA STRAWBERRY CHEESECAKE SALT 12MG 30ML",
+"UNA STRAWBERRY CHEESECAKE SALT 25MG 30ML",
+"UNA BANANA CHEESECAKE SALT 12MG 30ML"
+];
+
+const pods = [
+"FOOM POD X 580MAH NAKED TOSCA",
+"FOOM POD X 580MAH ABSOLUTE BLACK",
+"FOOM POD X 580MAH WILD PURPLE",
+"FOOM POD X SEASIDE SERIES DEEP BLUE",
+"FOOM POD X MUSE MAGENTA",
+"FOOM POD X HOT PINK",
+"LOST VAPE URSA NANO 3 SAGA SERIES",
+"OXVA XLIM PRO 3 BLACK CARBON",
+"OXVA XLIM PRO 3 PINK SILK",
+"OXVA XLIM PRO 3 PURPLE SILK",
+"OXVA XLIM PRO 3 TITANIUM SILK",
+"OXVA XLIM PRO 3 BROWN LEATHER",
+"OXVA XLIM PRO 3 SKY BLUE",
+"TRML T28 KIT EMERALD GREEN",
+"TRML T28 KIT CLEAN WHITE",
+"TRML T28 KIT PINK",
+"TRML T28 KIT DEEP PURPLE",
+"TRML T28 KIT MIDNIGHT BLUE",
+"VAPORESSO XROS 5 BIMOPD EDITION",
+"VOOPOO ARGUS G3 AURORA BLUE"
+];
+
+function renderProducts() {
+const keyword = document.getElementById('search').value.toLowerCase();
+
+const liquidContainer = document.getElementById('liquidList');
+const podContainer = document.getElementById('podList');
+
+liquidContainer.innerHTML='';
+podContainer.innerHTML='';
+
+let total = 0;
+
+liquids.filter(x=>x.toLowerCase().includes(keyword))
+.forEach(item=>{
+total++;
+liquidContainer.innerHTML += `
+<div class="card">
+<h3>${item}</h3>
+</div>`;
+});
+
+pods.filter(x=>x.toLowerCase().includes(keyword))
+.forEach(item=>{
+total++;
+podContainer.innerHTML += `
+<div class="card">
+<h3>${item}</h3>
+</div>`;
+});
+
+document.getElementById('total').innerText = total;
+}
+
+renderProducts();
+
+document.getElementById('search')
+.addEventListener('keyup',renderProducts);
+
+</script>
+
+</body>
+</html>
